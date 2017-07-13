@@ -1,0 +1,17 @@
+---
+# tasks file for apprenda
+- name: Perform {{ action }} against Apprenda environment {{ apprenda_url }}
+  apprenda_registry:
+    apprenda_url: "{{ apprenda_url }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    tenant: "{{ tenant }}"
+    action: "{{ action }}"
+    registry_name: "{{ registry_name | default(None) }}"
+    registry_value: "{{ registry_value | default(None) }}"
+    is_encrypted: "{{ is_encrypted | default(False) }}"
+    is_readonly: "{{ is_readonly | default(False) }}"
+  register: output
+- name: Display Result
+  debug:
+    var: output
